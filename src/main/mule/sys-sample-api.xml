@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="153177f3-048f-4737-97ed-74f20741db65" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<http:request-config name="HTTP_Request_configuration" doc:name="HTTP Request configuration" doc:id="c5f887ea-92d7-4085-9606-f10a874a6fa9" >
+		<http:request-connection host="worldtimeapi.org" />
+	</http:request-config>
+	<flow name="sys-sample-apiFlow" doc:id="a2dfe366-1903-4e5c-af4e-6a5b9d4647be" >
+		<http:listener doc:name="Listener" doc:id="be084643-7824-4a45-bb96-d6ccda174a62" config-ref="HTTP_Listener_config" path="/indianTime"/>
+		<http:request method="GET" doc:name="Request" doc:id="2a4a4747-ed8c-466f-a6f5-0f485d98de2f" config-ref="HTTP_Request_configuration" path="/api/timezone/Asia/Kolkata"/>
+	</flow>
+</mule>
